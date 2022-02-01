@@ -1,8 +1,13 @@
 from django.shortcuts import render
 from django.http import JsonResponse, response
 from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import generics
+
 
 from .models import CareerModle
+from .serializers import TaskSerializer
+
 
 
 # Create your views here.
@@ -33,3 +38,18 @@ class simple(APIView):
         return JsonResponse({"data":list(content)})
 
     pass
+
+
+class PostView(APIView):
+
+    def get(self, request, *args, **kwargs):
+        queryset = CareerModle.objects.all()
+        serializer = TaskSerializer(queryset, many=True)
+        # if serializer.is_valid():
+            # serializer.save()
+        return Response(serializer.data)
+
+
+class PostDetail(generics.RetrieveAPIView):
+    queryset = CareerModle.objects.all()
+    serializer_class = TaskSerializer

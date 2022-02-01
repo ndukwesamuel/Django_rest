@@ -15,13 +15,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from DataApp.views import home, API_NAME, simple
+from DataApp.views import home, API_NAME, PostView,PostDetail
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     # path('', home, name="home"),
     path('API_NAME/', API_NAME, name="API"),
-    path('', simple.as_view(), name="simple"),
+    path('', PostView.as_view(), name="simple"),
+    path('list/<pk>/', PostDetail.as_view(), name="details"),
+
 
 
 
