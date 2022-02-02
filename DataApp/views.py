@@ -53,3 +53,19 @@ class PostView(APIView):
 class PostDetail(generics.RetrieveAPIView):
     queryset = CareerModle.objects.all()
     serializer_class = TaskSerializer
+
+
+class PostCreate(generics.CreateAPIView):
+    queryset = CareerModle.objects.all()
+    serializer_class = TaskSerializer
+
+
+class PostDelete(generics.DestroyAPIView):
+    queryset = CareerModle.objects.all()
+
+
+
+class PostUpdate(generics.UpdateAPIView):
+    queryset = CareerModle.objects.all()
+    serializer_class = TaskSerializer
+    
